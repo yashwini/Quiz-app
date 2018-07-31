@@ -1,0 +1,36 @@
+{%extends 'quiz/studenthome.html' %}
+{% load humanize %}
+{% block title %}QUIZ RESULTS{%endblock%}
+{% block content %}
+<table class="table table-striped" align="center" style="width:1100px"><br><br><br>
+    {% if results %}
+        <tr><th>UserName</th><th>Date</th><th>Topic</th><th>marks</th><th>Action</th></tr>
+    {% for result in results %}
+    <tr><td><b>{{result.student__username}}</b></td><td><b>{{result.date|naturaltime}}</b></td><td><b>{{result.quiz_topic__topic}}</b><td><b>{{result.score}}</b></td>
+    <td><a href="{%url 'quiz:detail_result' result.id %}" class="btn btn-info btn-xs" role="button">View Result</a></td>
+    </tr>
+    {% endfor %}
+{% endif %}
+</table>
+{% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}

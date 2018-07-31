@@ -1,0 +1,31 @@
+{% extends 'quiz/my_admin.html' %}
+{% block title %}ADD QUESTION {%endblock%}
+{% block content %}
+<div class="col-lg-6 col-lg-offset-3">
+    <form action= '' method = "POST" ><br>
+        <div class="form-group"><label>Select Topic:</label>
+            <div>{{form.subtopic}}</div>
+        </div>
+        <div class="form-group"><label>Question:</label>
+            <div>{{form.question}}</div>
+        </div>
+        <div class="form-group"><label>Option1:</label>
+            <div>{{form.option1}}</div>
+        </div>
+        <div class="form-group"><label>Option2:</label>
+            <div>{{form.option2}}</div>
+        </div>
+        <div class="form-group"><label>Option3:</label>
+            <div>{{form.option3}}</div>
+        </div>
+        <div class="form-group"><label>Option4:</label>
+            <div>{{form.option4}}</div>
+        </div>
+        <div class="form-group"><label>Answer:</label>
+            <div>{{form.answer}}</div>
+        </div>
+        <div class="text-center"><button class="btn btn-primary" type="submit">Submit</button></div>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

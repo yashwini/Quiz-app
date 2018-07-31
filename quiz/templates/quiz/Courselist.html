@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ONLINE QUIZ</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/css/admin.css' %}" />
+ </head>
+<body>
+
+<nav class="navbar navbar-expand-sm  navbar-custom">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">ONLINE QUIZ</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color:#FFFFFF">Dash Board</a>
+    </li>
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:#FFFFFF">
+        Administration
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'quiz:add_course' %}" style="color:#FFFFFF">Add Category</a>
+        <a class="dropdown-item" href="{% url 'quiz:add_topic' %}" style="color:#FFFFFF">Add Subtopic</a>
+        <a class="dropdown-item" href="{% url 'quiz:add_question' %}" style="color:#FFFFFF">Add Question</a>
+      </div>
+    </li>
+
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:#FFFFFF">
+        Reports
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'quiz:category_list' %}" style="color:#FFFFFF">Course Report</a>
+        <a class="dropdown-item" href="{% url 'quiz:topic_list' %}" style="color:#FFFFFF">Topic report</a>
+        <a class="dropdown-item" href="{% url 'quiz:question_list' %}" style="color:#FFFFFF">Question Report</a>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'quiz:home_page' %}" style="color:#FFFFFF">Logout</a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-default">
+    <h5 text-align="center">COURSE LIST</h5>
+</nav>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-2 sidenav"></div>
+    <div class="col-sm-8"><br>
+        <div class="card-deck">
+{% for course in category %}
+    <div class="card"  style="min-width: 18rem; max-width: 18rem;">
+    <div class="card-body">
+      <img class="card-img-top" src="{% static 'quiz/images/quiz.jpg' %}" alt="cardimage"/>
+      <h5 class="card-title">{{ course.course_name}}</h5>
+      <p class="card-text">{{course.description}}</p>
+    </div>
+    <div class="card-footer" style="height:50px">
+        <span class="float-right"><a href="#"><i class="fa fa-ellipsis-v" style="color:black;vertical-align:middle;"></i></a></span>
+        <div class="icons">
+      <a href="{% url 'quiz:update_course' course.id %}"><i class="fa fa-pencil" style="font-size:20px; color:black"></i></a>
+      <a href="{% url 'quiz:delete_course' course.id %}"><i class="fa fa-trash"  style="font-size:20px; color:black"></i></a>
+    </div>
+    </div>
+  </div>
+    {% if forloop.counter|divisibleby:3 %}
+</div><br>
+<div class="card-deck">
+    {% endif %}
+{% endfor %}
+</div>
+        </div>
+      <div class="col-sm-2 sidenav"></div>
+</div>
+</div>
+<div class="container">
+{% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+       <li class="page-item"><a class="page-link" ><span>Previous</span></a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+      <li><a class="page-item active"><a class="page-link" ><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item"><a class="page-link" ><span>Next</span></a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+</body>
+</html>

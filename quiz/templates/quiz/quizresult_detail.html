@@ -1,0 +1,42 @@
+{%extends 'quiz/studenthome.html' %}
+{% block title %}QUIZ RESULTS{%endblock%}
+{% block content %}
+<table class="table table-striped" align="center" style="width:1100px"><br><br><br>
+    {% if questions %}
+    <tr><th><b>Question</b></th><th><b>Your Answer</b></th><th><b>Correct Answer</b></th><th><b>Result</b></th></tr>
+    {% for ques in questions %}
+    <tr><td><b>{{ques.question__question}}</b></td><td><b>{{ques.user_answer}}</b></td><td><b>{{ques.question__answer}}</b>
+        {% ifequal ques.user_answer ques.question__answer %}
+       <td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span></td>
+        {%else%}
+        <td><span class="glyphicon glyphicon-remove-circle" style="color:red"></span></td>
+        {% endifequal %}
+    </tr>
+    {% endfor %}
+{% endif %}
+</table>
+{% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}
+
+
+

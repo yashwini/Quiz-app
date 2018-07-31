@@ -1,0 +1,49 @@
+.navbar {
+    margin-top: 0;
+    border-radius: 0;
+}
+
+
+.nav.navbar-nav.navbar-right li {
+    color: #FFFFFF;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: black;
+}
+
+
+.panel-default{
+    margin: 0 auto;
+}
+
+.navbar-nav > li > .dropdown-menu { background-color: #FFFFFF; }
+
+
+.jumbotron-billboard .img {
+    background: rgba(0,0,0,1) url("/static/quiz/images/jumboimage.gif") top center no-repeat;
+    width: 100%;
+    height: 370px;
+    background-size: cover;
+    overflow: hidden;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+}
+.jumbotron h2 {margin-top:0;}
+.jumbotron {
+  position:relative;
+  padding-top:50px;
+  padding-bottom:50px;
+}
+.jumbotron .container {
+  position:relative;
+  z-index:2;
+}
+
+@media screen and (max-width: 768px) {
+  .jumbotron {
+    padding-top:20px;
+    padding-bottom:20px;
+  }

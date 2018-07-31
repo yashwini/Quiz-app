@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ONLINE QUIZ</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/css/admin.css' %}" />
+ </head>
+<body>
+
+<nav class="navbar navbar-expand-sm  navbar-custom">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">ONLINE QUIZ</a>
+  <!-- Links -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color:#FFFFFF">Dash Board</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'quiz:home_page' %}" style="color:#FFFFFF">My Results</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'quiz:home_page' %}" style="color:#FFFFFF">Logout</a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-default">
+    <h5 text-align="center">TOPIC LIST</h5>
+</nav>
+<br>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-2 sidenav"></div>
+    <div class="col-sm-8"><br>
+        <div class="card-deck">
+{% for topic in subcategory %}
+    <div class="card"  style="min-width: 18rem; max-width: 18rem;">
+    <div class="card-body">
+      <img class="card-img-top" src="{% static 'quiz/images/quiz.jpg' %}" alt="cardimage"/>
+        <h5 class="card-title"><a href="{% url 'quiz:list_questions' topic.id %}" style="color:black">{{ topic.topic}}</a></h5>
+      <p class="card-text"><i class="fa fa-tag" style="font-size:20px; color:black"></i> {{topic.category}}</p>
+    </div>
+    </div>
+    {% if forloop.counter|divisibleby:3 %}
+</div><br>
+<div class="card-deck">
+    {% endif %}
+{% endfor %}
+</div>
+        </div>
+      <div class="col-sm-2 sidenav"></div>
+</div>
+</div>
+<div class="container">
+{% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+       <li class="page-item"><a class="page-link" ><span>Previous</span></a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+      <li><a class="page-item active"><a class="page-link" ><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item"><a class="page-link" ><span>Next</span></a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+</body>
+</html>

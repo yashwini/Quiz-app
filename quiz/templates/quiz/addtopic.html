@@ -1,0 +1,19 @@
+{% extends 'quiz/my_admin.html' %}
+{% block title %}ADD TOPIC {%endblock%}
+{% block content %}
+<div class="col-lg-6 col-lg-offset-3">
+    <form action= '' method = "POST" ><br><br>
+       <div class="form-group"><label>Select Course:</label>
+          <div>{{form.category}}</div>
+       </div><br>
+       <div class="form-group"><label>Topic Name:</label>
+          <div>{{form.topic}}</div>
+       </div><br>
+       <div class="form-group"><label>Prescriptions of the Topics:</label>
+          <div>{{form.description}}</div>
+       </div><br>
+       <div class="text-center"><button class="btn btn-primary" type="submit">Submit</button></div>
+       {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

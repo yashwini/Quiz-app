@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'quiz/css/HomePage.css' %}" />
+    <style>
+div.ex1 {
+    height:90px;
+    max-width:800px;
+    margin: auto;
+    border: 1px solid #f1f1f1;
+    background-color:#fbfbfb;
+}
+
+div.ex2 {
+    text-align:left;
+    line-height:50px;
+    height:50px;
+    max-width:800px;
+    margin: auto;
+    border: 1px solid #f2f2f2;
+    background-color:#f1f1f1;
+}
+</style>
+
+</head>
+<body>
+<div>
+  <div>
+    <nav class="navbar navbar-default">
+        <div class="container">
+           <div class="navbar-header">
+             <a class="navbar-brand" href="#"><b>Online Quiz </b></a>
+           </div>
+           <ul class="nav navbar-nav navbar-right">
+               <li ><a href="#">Dash Board</a></li>
+               <li ><a href="{% url 'quiz:myresults' %}">My Results</a></li>
+               <li><a href="{% url 'quiz:home_page' %}">Logout</a></li>
+           </ul>
+        </div>
+    </nav>
+  </div>
+  <div>
+      <nav class="navbar navbar-custom">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand " href="#" style="color:#50394c">QUESTIONS</a>
+          </div>
+        </div>
+      </nav>
+  </div><br><br>
+<form action= "{% url 'quiz:result' key %}" method = "POST" >
+    {% for question in questions %}
+<div class="ex2"><p>Q {{question.question}}</p></div>
+<div class="ex1">
+    <input type = "radio" name="{{question.id}}" value="{{question.option1}}" required>{{question.option1}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.option2}}">{{question.option2}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.option3}}">{{question.option3}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.option4}}">{{question.option4}}<br>
+</div>
+{% endfor %}
+    <div class="text-center"><button class="btn btn-primary" type="submit">Submit</button></div>
+    {% csrf_token %}
+</form>
+{% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{%extends 'quiz/my_admin.html' %}
+{% block title %}COURSE DETAILS{%endblock%}
+{% block content %}
+<table class="table table-striped" align="center" style="width:1100px"><br><br><br>
+    {% if category %}
+    <tr><th>S.No</th><th>Course Name</th><th>Description</th><th>Action</th></tr>
+    {% for course in category %}
+    <tr><td>{{course.id}}</td><td>{{course.course_name}}</td><td>{{course.description}}</td>
+        {% if user.is_superuser %}
+            <td><a href="{%url 'quiz:update_course' course.id %}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+            <a href="{%url 'quiz:delete_course' course.id %}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span>Delete</a></td></tr>
+        {% else %}
+            <td><a href="{%url 'quiz:list_topics' course.id %}" class="btn btn-success btn-xs">View Topics</a></td></tr>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+</table>
+{% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}
+
+
+

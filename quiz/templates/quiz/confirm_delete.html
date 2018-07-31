@@ -1,0 +1,11 @@
+{%extends 'quiz/my_admin.html' %}
+{% block title %}DELETE CONFIRMATION {%endblock%}
+{% block content %}
+<div class="col-lg-6 col-lg-offset-3">
+   <form action= '' method = "POST" ><br><br>
+        {% csrf_token %}
+    <p>Are you sure you want to delete <b>"{{ object }}"</b></p>
+    <input type="submit" value="Confirm" />
+   </form>
+</div>
+{%endblock%}

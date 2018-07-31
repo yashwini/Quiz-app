@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ONLINE QUIZ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/css/table.css' %}" />
+</head>
+<body>
+<div class="jumbotron jumbotron-billboard">
+  <div class="img">
+      <nav class="collapse navbar-collapse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="color:black;font-size:19px" href="#">ONLINE QUIZ</a>
+        </div>
+           <ul class="nav navbar-nav navbar-right" style="font-size:19px">
+            <li><a href="{% url 'quiz:home_page' %}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="{% url 'quiz:login_page' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="{% url 'quiz:signup_page' %}"><span class="glyphicon glyphicon-log-out"></span> Register</a></li>
+        </ul>
+    </div>
+</nav>
+  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <h1 align="center">Quiz Wizard</h1>
+                <p align="center">Join and compete against your fellow mates and brag for the top place</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top:160px;text-align:center;">
+    <h2 style="font-family: Comfortaa; color: skyblue"><b>WELCOME TO ONLINE QUIZ SYSTEM</b></h2><br>
+    <div class="col-md-3" style="text-align:center; height:500px;">
+        <img src="{% static 'quiz/images/book_lead.jpg' %}" style="max-width:80%; height:auto; width:auto;"><br>
+        <h3><b style="font-family:Comfortaa">Learn</b></h3><br>
+        <p>
+            Learn and grasp the knowledge in depth
+        </p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3 " style="text-align:center;height:450px;">
+        <img src="{% static 'quiz/images/img3.png' %}" style="max-width:80%; height:auto; width:auto;"><br>
+        <h3><b style="font-family:Comfortaa">Practice</b></h3><br>
+        <p style="font-family:Khula">
+            Practice and enhance your skills
+        </p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3 " style="text-align:center;height:450px;">
+        <img src="{% static 'quiz/images/img1.jpg' %}" style="max-width:80%; height:auto; width:auto;"><br>
+        <h3><b style="font-family:Comfortaa">Compete</b></h3><br>
+        <p style="font-family:Khula">
+            Come participate and test yourself and fill your gaps
+        </p>
+    </div>
+</div>
+</body>
+</html>

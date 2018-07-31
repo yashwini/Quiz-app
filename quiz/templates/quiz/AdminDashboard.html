@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<title>ONLINE QUIZ</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/css/table.css' %}" />
+</head>
+<body>
+<div class="jumbotron jumbotron-billboard">
+  <div class="img">
+      <nav class="collapse navbar-collapse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="color:black;font-size:19px" href="#">ONLINE QUIZ</a>
+        </div>
+           <ul class="nav navbar-nav navbar-right" style="font-size:19px">
+               <li ><a href="{% url 'quiz:admin_home' %}">Dash Board</a></li>
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administration <span class="caret"></span></a>
+              <ul class="dropdown-menu" >
+                   <li><a href="{% url 'quiz:add_course' %}">Add Category</a></li>
+                   <li><a href="{% url 'quiz:add_topic' %}">Add Subtopic</a></li>
+                   <li><a href="{% url 'quiz:add_question' %}">Add Question</a></li>
+              </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="{% url 'quiz:category_list' %}">Course Report</a></li>
+                  <li><a href="{% url 'quiz:topic_list' %}">Topic report</a></li>
+                  <li><a href="{% url 'quiz:question_list' %}">Question Report</a></li>
+              </ul>
+              </li>
+              <li><a href="{% url 'quiz:home_page' %}">Logout</a></li>
+           </ul>
+    </div>
+</nav>
+  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+              <h1 align="center">Quiz Wizard</h1>
+                <p align="center">Join and compete against your fellow mates and brag for the top place</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top:160px;text-align:center;">
+    <header class="w3-container">
+    <h2 align="center"><b> Dashboard</b></h2>
+  </header><br>
+<div class="col-sm-2 sidenav"></div>
+<div class="col-sm-9 margin-top:300px">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well" >
+            <h4>ADD CATEGORIES</h4>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>ADD SUBCATEGORIES</h4>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>ADD QUESTIONS</h4>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="col-sm-2 sidenav"></div>
+<div class="col-sm-9 margin-top:300px">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well" >
+            <h4>TOPICS REPORT</h4>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>COURSE REPORT</h4>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>QUESTIONS REPORT</h4>
+          </div>
+        </div>
+      </div>
+</div>
+</div></div>
+</body>
+</html>
+

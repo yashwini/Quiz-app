@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<title>ONLINE QUIZ</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/css/HomePage.css' %}" />
+</head>
+<body>
+<div>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ONLINE QUIZ</a>
+        </div>
+           <ul class="nav navbar-nav navbar-right">
+               <li ><a href="{% url 'quiz:admin_home' %}">Dash Board</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administration <span class="caret"></span></a>
+              <ul class="dropdown-menu" >
+                   <li><a href="{% url 'quiz:add_course' %}">Add Category</a></li>
+                   <li><a href="{% url 'quiz:add_topic' %}">Add Subtopic</a></li>
+                   <li><a href="{% url 'quiz:add_question' %}">Add Question</a></li>
+              </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="{% url 'quiz:category_list' %}">Course Report</a></li>
+                  <li><a href="{% url 'quiz:topic_list' %}">Topic report</a></li>
+                  <li><a href="{% url 'quiz:question_list' %}">Question Report</a></li>
+              </ul>
+              </li>
+              <li><a href="{% url 'quiz:home_page' %}">Logout</a></li>
+           </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-custom">
+    <div class="container">
+        <div class="navbar-header">
+        <a class="navbar-brand " href="#" style="color:#50394c">{%block title%}{% endblock %}</a></div>
+    </div>
+</nav><br>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
+

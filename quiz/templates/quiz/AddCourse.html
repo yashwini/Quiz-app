@@ -1,0 +1,16 @@
+{% extends 'quiz/my_admin.html' %}
+{% block title %}ADD COURSE {%endblock%}
+{% block content %}
+<div class="col-lg-6 col-lg-offset-3">
+   <form action= '' method = "POST" ><br><br>
+       <div class="form-group"><label>Course Name:</label>
+           <div>{{form.course_name}}</div>
+       </div><br>
+       <div class="form-group"><label>Description:</label>
+           <div>{{form.description}}</div>
+       </div><br>
+       <div class="text-center"><button class="btn btn-primary" type="submit">Submit</button></div>
+          {% csrf_token %}
+   </form>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{%extends 'quiz/_base.html' %}
+
+{% block title %}SIGN UP{% endblock %}
+
+{% block content %}
+<br><h3 align="center">SIGN UP</h3><br>
+<div class="container">
+     <form  method="post" action="" class="form-horizontal">
+     {% csrf_token %}
+    <div class="form-group">
+        <label class="col-md-4"></label>
+        <div class="col-md-4">{{form.first_name}}</div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4"></label>
+        <div class="col-md-4">{{form.username}}</div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4"></label>
+        <div class="col-md-4">{{form.email}}</div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4"></label>
+        <div class="col-md-4">{{form.password}}</div>
+    </div>
+         <br>
+         <div class="text-center"><button class="btn btn-primary" type="submit">Create Account</button></div><br>
+         <div class="card-footer text-muted text-center">Already registered? <a href="{% url 'quiz:login_page' %}">Login</a></div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.navbar-default{
+     background-color: #d6d6d6 !important;
+
+}
+
+.navbar-brand{
+     color: #FFFFFF;
+ }
+
+.navbar-custom{
+     background-color: #50394c;
+}
+
+.dropdown-menu { background-color: #50394c; }
+
+.icon-cog {
+  color: black;
+}
+
+.a >.nav-item {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
